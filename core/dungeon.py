@@ -1,5 +1,8 @@
-from core.events import generate_events
-from core.objects import Room
+from core.coroutines import Wumpus
+from core.events import EVENTS, WUMPUS_EVENT
+from core.event_loop import event_loop
+from core.objects import Room, beast_map
+from core.utils import get_random_room_num_iter, uid_generator
 
 
 def generate_dungeon():
@@ -8,24 +11,39 @@ def generate_dungeon():
     Every room in a dungeon has only 3 tunnels or connections with other rooms.
     Dungeon structure is following:
     - Center circle has 5 connected rooms;
-    - Middle circle has 10 connected rooms. Every room with even number is connected with
-      the room from center circle;
-    - Outer circle has 5 connected rooms. Every room is connected with a room from middle circle
-      with odd number.
+    - Middle circle has 10 connected rooms. Every room with even number
+      is connected with the room from center circle;
+    - Outer circle has 5 connected rooms. Every room is connected with
+      a room from middle circle with odd number.
     """
     center_circle = _generate_circle_rooms(1, 5)
     middle_circle = _generate_circle_rooms(6, 15, center_circle)
     outer_circle = _generate_circle_rooms(16, 20, middle_circle)
 
-    rooms =  {
+    return {
         room.num: room
         for room in (*center_circle, *middle_circle, *outer_circle)
     }
 
-    for room_num, event in generate_events():
-        rooms[room_num].events.add(event)
 
-    return rooms
+def generate_events_and_beasts(rooms):
+    room_num_iter = get_random_room_num_iter()
+
+    for event, events_number in EVENTS:
+        for _ in range(events_number):
+            event_id = next(uid_generator)
+            room_num = next(room_num_iter)
+            # events can happen in any room except start room
+            if room_num == '1':
+                room_num = next(room_num_iter)
+            # spawn Wumpus
+            if event is WUMPUS_EVENT:
+                wumpus = Wumpus(rooms[room_num], event_id)
+                wumpus_coroutine = wumpus.listen()
+                beast_map[event_id] = wumpus_coroutine
+                event_loop.add_event(wumpus_coroutine)
+
+            rooms[room_num].events.add((event_id, event))
 
 
 def _generate_circle_rooms(first_room, last_room, inner_circle=None):
