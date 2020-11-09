@@ -18,12 +18,12 @@ def generate_dungeon():
     outer_circle = _generate_circle_rooms(16, 20, middle_circle)
 
     rooms =  {
-        room.uid: room
+        room.num: room
         for room in (*center_circle, *middle_circle, *outer_circle)
     }
 
-    for room_uid, event in generate_events():
-        rooms[room_uid].events.append(event)
+    for room_num, event in generate_events():
+        rooms[room_num].events.append(event)
 
     return rooms
 
@@ -35,14 +35,14 @@ def _generate_circle_rooms(first_room, last_room, inner_circle=None):
         inner_circle_l = len(inner_circle)
         inner_i = inner_circle_l - 1
 
-    for uid in range(first_room, last_room + 1):
-        room = Room(uid)
+    for num in range(first_room, last_room + 1):
+        room = Room(num)
         # connects center and middle circles
-        if uid > 5 and uid < 16 and uid % 2 == 0:
+        if num > 5 and num < 16 and num % 2 == 0:
             _link_rooms(inner_circle[inner_i % inner_circle_l], room)
             inner_i += 1
         # connects middle and outer circle
-        elif uid > 15:
+        elif num > 15:
             _link_rooms(inner_circle[inner_i % inner_circle_l], room)
             inner_i += 2
         if prev_room is not None:
@@ -55,5 +55,5 @@ def _generate_circle_rooms(first_room, last_room, inner_circle=None):
 
 
 def _link_rooms(room_a, room_b):
-    room_a.connected_rooms[room_b.uid] = room_b
-    room_b.connected_rooms[room_a.uid] = room_a
+    room_a.connected_rooms[room_b.num] = room_b
+    room_b.connected_rooms[room_a.num] = room_a

@@ -2,8 +2,8 @@ from config import ARROWS
 
 
 class Room:
-    def __init__(self, uid):
-        self.uid = uid
+    def __init__(self, num):
+        self.num = num
         self.connected_rooms = {}
         self.events = []
 

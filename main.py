@@ -11,7 +11,7 @@ def start_game_loop():
         if player.dead:
             print(events_text[GAME_OVER])
             return
-        print(f'\nYou are in the room {current_room.uid}')
+        print(f'\nYou are in the room {current_room.num}')
         for event in current_room.events:
             print(events_text[event])
         action = ask_player_to_act()
@@ -30,7 +30,7 @@ def start_game():
 
 
 def ask_player_to_move_from(room):
-    options = set(str(room.uid) for room in room.connected_rooms.values())
+    options = set(str(room.num) for room in room.connected_rooms.values())
     while True:
         print(f'\nYou can go to the following rooms: {" ".join(options)} ')
         response = input("Where to? ")
