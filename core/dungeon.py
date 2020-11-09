@@ -23,7 +23,7 @@ def generate_dungeon():
     }
 
     for room_num, event in generate_events():
-        rooms[room_num].events.append(event)
+        rooms[room_num].events.add(event)
 
     return rooms
 
