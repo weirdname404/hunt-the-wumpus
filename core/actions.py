@@ -1,0 +1,7 @@
+ATACK = 1
+MOVE = 2
+WAIT = 3
+GET_DAMAGE = 4
+FLEE = 5
+AWAKE = 6
+DIE = 7
