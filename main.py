@@ -1,12 +1,13 @@
-from text_lines import intro
 from core.game_loop import start_game_loop
+
+INTRO = 'Welcome to the "Hunt the Wumpus" game.\n'
 
 
 def start_game():
-    print(intro)
+    print(INTRO)
     while True:
         start_game_loop()
-        if (answer := ask_player_to_restart()) is False:
+        if ask_player_to_restart() is False:
             break
 
 
