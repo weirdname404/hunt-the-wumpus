@@ -63,11 +63,11 @@ def check_room_events(room, player):
             room.events.remove((uid, event))
         # found something
         elif event is ITEM_EVENT:
-            roll = random.randint(1, 100)
+            roll = random.random()
             room.events.remove((uid, event))
-            if roll <= 3:
+            if roll <= 0.03:
                 print(EVENT_OCCURS[SWEETROLL_EVENT])
-            elif 3 > roll <= 40:
+            elif 0.03 > roll <= 0.4:
                 player.gold += 1
                 print(EVENT_OCCURS[GOLD_EVENT])
             else:
@@ -79,9 +79,9 @@ def check_room_events(room, player):
         # wumpus is healthy and ready to fight
         elif event is WUMPUS_EVENT:
             # there is a chance that wumpus will atack or flee
-            if random.randint(1, 100) <= 75:
+            if random.random() <= 0.75:
                 # there is a chance that player can evade the attack
-                if random.randint(1, 100) <= 10:
+                if random.random() <= 0.01:
                     print(EVENT_OCCURS[WUMPUS_ATTACK_FAIL])
                 else:
                     print(EVENT_OCCURS[WUMPUS_ATTACK_SUCCESS])

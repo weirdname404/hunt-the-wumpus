@@ -39,7 +39,7 @@ class Wumpus:
             elif action is AWAKE:
                 log.info(f"wumpus {uid} is awaken")
                 # if wumpus is awaken it is a chance that it will change room
-                if random.randint(1, 100) <= 60:
+                if random.random() <= 0.7:
                     self.move_randomly()
             elif action is DIE:
                 self.current_room.events.remove((uid, WUMPUS_WOUNDED))
