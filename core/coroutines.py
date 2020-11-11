@@ -59,7 +59,8 @@ def shoot_arrow(start_room, route):
     # flying path
     for room_num in route:
         # if player's room number is not valid, choose next room randomly
-        if (next_room := current_room.connected_rooms.get(room_num)) is None:
+        next_room = current_room.connected_rooms.get(room_num)
+        if next_room is None:
             next_room = get_random_close_room(current_room)
 
         if current_room is not start_room:

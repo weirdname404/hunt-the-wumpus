@@ -105,5 +105,6 @@ def check_room_events(room, player):
 def check_close_events(current_room):
     for room in current_room.connected_rooms.values():
         for _, event in room.events:
-            if (text := EVENT_IS_NEAR.get(event)) is not None:
+            text = EVENT_IS_NEAR.get(event)
+            if text is not None:
                 print(text)
