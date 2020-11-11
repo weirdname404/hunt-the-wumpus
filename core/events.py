@@ -3,7 +3,6 @@ import config
 from core.actions import DIE, MOVE
 from core.objects import beast_map
 from core.utils import get_random_room_num
-# from text_lines import events_text, event_is_near
 
 # ids
 WUMPUS_EVENT = 1
