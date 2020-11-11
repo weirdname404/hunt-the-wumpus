@@ -29,7 +29,7 @@ EVENT_IS_NEAR = {
 EVENT_OCCURS = {
     ITEM_EVENT: "You found something...",
     GARBAGE: "It's just a pile of bones.",
-    NO_ADVENTURES: "You used to be an adventurer...",
+    NO_ADVENTURES: "Suddenly you don't feel like being an adventurer anymore...",
     DEATH: "You died...",
     WUMPUS_EVENT: "You see Wumpus... It is awaken...",
     WUMPUS_ATTACK_SUCCESS: "In one jump it gets you and blows your head off.",
@@ -39,9 +39,9 @@ EVENT_OCCURS = {
     BATS_EVENT: "Huge bats lift you up in the air and carry you in an unknown direction.",
     PIT_EVENT: "You fall into a pit. You broke some bones and you can't get out...",
     ARROW_EVENT: "You hear a loud whistle and see a flying arrow. You took an arrow in the knee.",
-    GOLD_EVENT: "What a luck! You found some shiny gold.",
+    GOLD_EVENT: "What a luck! You've found a shiny gold coin.",
     SWEETROLL_EVENT: "You found a sweetroll.",
-    LOST_ARROW_EVENT: "You found a magic arrow. It's hard to tell whether it was yours or belonged to a previous hunter."
+    LOST_ARROW_EVENT: "You found a magic arrow. It's hard to tell how long it's been there."
 }
 
 EVENTS = (

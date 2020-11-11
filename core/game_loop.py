@@ -35,7 +35,7 @@ def start_game_loop():
             return
         # WIN
         if player.kills == WUMPUSES:
-            text = "You won! You found {} gold and killed {} monster(s) known as Wumpus"
+            text = "You won! You have found {} gold coins and killed {} monster(s) known as Wumpus"
             print(text.format(player.gold, player.kills))
             return
         # check close events
@@ -91,7 +91,7 @@ def ask_player_to_move_from(room, options):
 def ask_to_act(player):
     """Asks about next player's action"""
     while True:
-        response = input('Shoot or Move? [s/m/w] ').lower()
+        response = input('Shoot, Move or Wait? [s/m/w] ').lower()
         if response == 's':
             if player.arrows < 1:
                 print("There are no more arrows left... You must move on.")
