@@ -69,7 +69,7 @@ You can run out of arrows, but you can pick them up to continue the hunt.
 ### Additional info
 
 You can modify `config.py` to experiment with the game by:
-- spawning several beasts,
+- spawning several beasts;
 - making more threat rooms;
 - setting more arrows;
 
